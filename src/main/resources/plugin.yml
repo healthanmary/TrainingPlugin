@@ -1,0 +1,8 @@
+name: TrainingPlugin
+version: '${version}'
+main: ru.healthanmary.trainingplugin.TrainingPlugin
+api-version: '1.16'
+authors: [healthanmary]
+commands:
+  effectmenu:
+    aliases: em
