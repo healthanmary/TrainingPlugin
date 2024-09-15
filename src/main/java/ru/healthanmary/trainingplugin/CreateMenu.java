@@ -26,14 +26,6 @@ public class CreateMenu {
             inv.setItem(i, pane);
     }
     private static ItemStack potion = new ItemStack(Material.POTION);
-    @Getter
-    private static final Set<String> perms = Set.of(
-            "effectmenu.sila",
-            "effectmenu.speed",
-            "effectmenu.ogna",
-            "effectmenu.regen"
-    );
-
     private static void silka() {
         PotionMeta pm = (PotionMeta) potion.getItemMeta();
         pm.setBasePotionData(new PotionData(PotionType.STRENGTH, false, true));
@@ -56,24 +48,10 @@ public class CreateMenu {
         inv.setItem(7, potion); }
 
     public static void openMenu(Player p) {
-//        for (String perm : perms) {
-//            if (p.hasPermission(perm)) {
-//                switch (perm) {
-//                    case "effectmenu.sila":
-//                        silka();
-//                        break;
-//                    case "effectmenu.speed":
-//                        speed();
-//                        break;
-//                    case "effectmenu.regen":
-//                        regen();
-//                        break;
-//                    case "effectmenu.ogna":
-//                        ogna();
-//                        break;
-//                }
-//            }
-//        }
+        silka();
+        speed();
+        ogna();
+        regen();
         p.openInventory(inv);
     }
 }
