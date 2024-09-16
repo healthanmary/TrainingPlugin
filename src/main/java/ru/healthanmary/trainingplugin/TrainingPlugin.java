@@ -6,9 +6,9 @@ public final class TrainingPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getCommand("effectmenu").setExecutor(new CommandExecutor());
+        getCommand("effectmenu").setExecutor(new EffectMenuCommandExecutor());
         getServer().getPluginManager().registerEvents(new ForbidGetItem(), this);
-        getServer().getPluginManager().registerEvents(new GetPotionEffect(), this);
+        getServer().getPluginManager().registerEvents(new ApplyEffectOnClick(), this);
     }
 
     @Override

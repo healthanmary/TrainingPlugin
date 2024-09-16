@@ -5,13 +5,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class CommandExecutor implements org.bukkit.command.CommandExecutor {
+public class EffectMenuCommandExecutor implements org.bukkit.command.CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player p)) {
             sender.sendMessage("Только для игроков");
             return true; }
-        CreateMenu.fillInventory();
+//        CreateMenu.fillInventory();
         CreateMenu.openMenu(p);
         return true;
     }

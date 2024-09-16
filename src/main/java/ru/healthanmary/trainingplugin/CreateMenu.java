@@ -17,41 +17,28 @@ import java.util.*;
 public class CreateMenu {
     @Getter
     private static Inventory inv = Bukkit.createInventory(null, 9, "Доступные эффекты");
-    public static void fillInventory() {
+    private static ItemStack potion = new ItemStack(Material.POTION);
+
+    private static void setParams(PotionType pt, boolean extended, boolean upgraded, int index) {
+        PotionMeta pm = (PotionMeta) potion.getItemMeta();
+        pm.setBasePotionData(new PotionData(pt, extended, upgraded));
+        potion.setItemMeta(pm);
+        inv.setItem(index, potion);
+    }
+
+    public static void openMenu(Player p) {
         ItemStack pane = new ItemStack(Material.PINK_STAINED_GLASS_PANE, 1);
         ItemMeta pane_meta = pane.getItemMeta();
         pane_meta.setDisplayName(" ");
         pane.setItemMeta(pane_meta);
         for (int i = 0; i < 9; i += 2)
             inv.setItem(i, pane);
-    }
-    private static ItemStack potion = new ItemStack(Material.POTION);
-    private static void silka() {
-        PotionMeta pm = (PotionMeta) potion.getItemMeta();
-        pm.setBasePotionData(new PotionData(PotionType.STRENGTH, false, true));
-        potion.setItemMeta(pm);
-        inv.setItem(1, potion); }
-    private static void speed() {
-        PotionMeta pm = (PotionMeta) potion.getItemMeta();
-        pm.setBasePotionData(new PotionData(PotionType.SPEED, false, true));
-        potion.setItemMeta(pm);
-        inv.setItem(3, potion); }
-    private static void ogna() {
-        PotionMeta pm = (PotionMeta) potion.getItemMeta();
-        pm.setBasePotionData(new PotionData(PotionType.FIRE_RESISTANCE, true, false));
-        potion.setItemMeta(pm);
-        inv.setItem(5, potion); }
-    private static void regen() {
-        PotionMeta pm = (PotionMeta) potion.getItemMeta();
-        pm.setBasePotionData(new PotionData(PotionType.REGEN, true, false));
-        potion.setItemMeta(pm);
-        inv.setItem(7, potion); }
 
-    public static void openMenu(Player p) {
-        silka();
-        speed();
-        ogna();
-        regen();
+        setParams(PotionType.STRENGTH, false, true, 1);
+        setParams(PotionType.SPEED, false, true, 3);
+        setParams(PotionType.FIRE_RESISTANCE, true, false, 5);
+        setParams(PotionType.REGEN, true, false, 7);
+
         p.openInventory(inv);
     }
 }
