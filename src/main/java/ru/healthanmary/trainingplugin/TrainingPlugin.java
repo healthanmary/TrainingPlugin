@@ -9,6 +9,7 @@ public final class TrainingPlugin extends JavaPlugin {
         getCommand("effectmenu").setExecutor(new EffectMenuCommandExecutor());
         getServer().getPluginManager().registerEvents(new ForbidGetItem(), this);
         getServer().getPluginManager().registerEvents(new ApplyEffectOnClick(), this);
+        getServer().getPluginManager().registerEvents(new GapleCooldown(), this);
     }
 
     @Override
