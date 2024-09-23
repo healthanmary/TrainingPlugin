@@ -1,9 +1,8 @@
-package ru.healthanmary.trainingplugin;
+package ru.healthanmary.trainingplugin.EffecrMenu;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -11,8 +10,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
-
-import java.util.*;
 
 public class CreateMenu {
     @Getter

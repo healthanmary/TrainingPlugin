@@ -1,4 +1,4 @@
-package ru.healthanmary.trainingplugin;
+package ru.healthanmary.trainingplugin.Other;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,7 +18,6 @@ public class GapleCooldown implements Listener {
     public void on(PlayerItemConsumeEvent e) {
         if (!e.getItem().getType().equals(Material.GOLDEN_APPLE))
             return;
-
         UUID uuid = e.getPlayer().getUniqueId();
         if (!this.cooldown.containsKey(uuid)) {
             e.getPlayer().setCooldown(Material.GOLDEN_APPLE, 100);

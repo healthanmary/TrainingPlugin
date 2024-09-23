@@ -6,3 +6,5 @@ authors: [healthanmary]
 commands:
   effectmenu:
     aliases: em
+  standspawn:
+    aliases: ss

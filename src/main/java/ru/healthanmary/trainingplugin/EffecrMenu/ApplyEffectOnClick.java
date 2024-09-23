@@ -1,4 +1,4 @@
-package ru.healthanmary.trainingplugin;
+package ru.healthanmary.trainingplugin.EffecrMenu;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
