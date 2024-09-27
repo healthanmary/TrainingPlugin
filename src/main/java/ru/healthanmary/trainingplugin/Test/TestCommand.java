@@ -15,7 +15,7 @@ public class TestCommand implements CommandExecutor{
         if (!(sender instanceof Player)) return true;
         Player p = (Player) sender;
 
-        StartTimer.startTimer(p);
+//        StartTimer.startTimer(p);
         return true;
     }
 }

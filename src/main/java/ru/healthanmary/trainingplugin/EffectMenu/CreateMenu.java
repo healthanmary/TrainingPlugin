@@ -1,4 +1,4 @@
-package ru.healthanmary.trainingplugin.EffecrMenu;
+package ru.healthanmary.trainingplugin.EffectMenu;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;

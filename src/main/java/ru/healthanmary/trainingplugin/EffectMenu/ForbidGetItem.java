@@ -1,4 +1,4 @@
-package ru.healthanmary.trainingplugin.EffecrMenu;
+package ru.healthanmary.trainingplugin.EffectMenu;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
