@@ -1,6 +1,5 @@
 package ru.healthanmary.trainingplugin;
 
-import lombok.Getter;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,7 +7,8 @@ import ru.healthanmary.trainingplugin.EffectMenu.ApplyEffectOnClick;
 import ru.healthanmary.trainingplugin.EffectMenu.EffectMenuCommandExecutor;
 import ru.healthanmary.trainingplugin.EffectMenu.ForbidGetItem;
 import ru.healthanmary.trainingplugin.ArmorStdMesssage.PlayerSendMessageHooker;
-import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveChestplate;
+import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveBook;
+import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveEnchantedChestplate;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.HumpHitEnchant;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.PhantomDamageListener;
 import ru.healthanmary.trainingplugin.Other.GapleCooldown;
@@ -27,12 +27,14 @@ public final class TrainingPlugin extends JavaPlugin {
         registerEnchantment(humpHitEnchant);
         getCommand("effectmenu").setExecutor(new EffectMenuCommandExecutor());
         getCommand("standspawn").setExecutor(new SpawnCommnd());
-        getCommand("getchestplate").setExecutor(new GiveChestplate());
+        getCommand("getchestplate").setExecutor(new GiveBook());
+        getCommand("getbook").setExecutor(new GiveEnchantedChestplate());
         getServer().getPluginManager().registerEvents(new PhantomDamageListener(), this);
         getServer().getPluginManager().registerEvents(new ForbidGetItem(), this);
         getServer().getPluginManager().registerEvents(new ApplyEffectOnClick(), this);
         getServer().getPluginManager().registerEvents(new GapleCooldown(), this);
         getServer().getPluginManager().registerEvents(new PlayerSendMessageHooker(), this);
+
     }
     public static void registerEnchantment(Enchantment enchantment) {
         boolean registered = true;

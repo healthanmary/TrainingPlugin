@@ -25,7 +25,7 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public @NotNull Component displayName(int level) {
-        return Component.text("Удар горбом");
+        return Component.text("Удар горбом " + level);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public float getDamageIncrease(int level, @NotNull EntityCategory entityCategory) {
-        return 0;
+        return 1;
     }
 
     @Override

@@ -10,3 +10,5 @@ commands:
     aliases: ss
   getchestplate:
     aliases: gch
+  getbook:
+    aliases: gbk
