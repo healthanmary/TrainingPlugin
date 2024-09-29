@@ -1,4 +1,4 @@
-package ru.healthanmary.trainingplugin.KillPhantomEnchant;
+package ru.healthanmary.trainingplugin.DrillEnchant;
 
 import io.papermc.paper.enchantments.EnchantmentRarity;
 import net.kyori.adventure.text.Component;
@@ -13,14 +13,14 @@ import ru.healthanmary.trainingplugin.TrainingPlugin;
 
 import java.util.Set;
 
-public class HumpHitEnchant extends Enchantment {
-
-    public HumpHitEnchant(String namespacedKey) {
+public class DrillEnchant extends Enchantment {
+    public DrillEnchant(@NotNull String namespacedKey) {
         super(new NamespacedKey(TrainingPlugin.getInstance(), namespacedKey));
     }
+
     @Override
     public @NotNull String getName() {
-        return "humphit";
+        return "drill";
     }
 
     @Override
@@ -30,12 +30,12 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public int getStartLevel() {
-        return 0;
+        return 1;
     }
 
     @Override
     public @NotNull EnchantmentTarget getItemTarget() {
-        return EnchantmentTarget.ARMOR_TORSO;
+        return EnchantmentTarget.TOOL;
     }
 
     @Override
@@ -55,12 +55,12 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public boolean canEnchantItem(@NotNull ItemStack item) {
-        return item.getType().toString().contains("CHESTPLATE");
+        return item.getType().toString().contains("PICKAXE");
     }
 
     @Override
     public @NotNull Component displayName(int level) {
-        return Component.text("Удар горбом " + level);
+        return Component.text("Бур " + level);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public @NotNull EnchantmentRarity getRarity() {
-        return EnchantmentRarity.COMMON;
+        return EnchantmentRarity.UNCOMMON;
     }
 
     @Override
@@ -85,6 +85,6 @@ public class HumpHitEnchant extends Enchantment {
 
     @Override
     public @NotNull Set<EquipmentSlot> getActiveSlots() {
-        return Set.of(EquipmentSlot.CHEST);
+        return Set.of(EquipmentSlot.HAND);
     }
 }

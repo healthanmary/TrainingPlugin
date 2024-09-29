@@ -3,9 +3,9 @@ package ru.healthanmary.trainingplugin;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.healthanmary.trainingplugin.EffectMenu.ApplyEffectOnClick;
-import ru.healthanmary.trainingplugin.EffectMenu.EffectMenuCommandExecutor;
-import ru.healthanmary.trainingplugin.EffectMenu.ForbidGetItem;
+import ru.healthanmary.trainingplugin.DrillEnchant.DrillBlockBreakListener;
+import ru.healthanmary.trainingplugin.DrillEnchant.DrillEnchant;
+import ru.healthanmary.trainingplugin.DrillEnchant.GiveDrillEnchantedPickaxe;
 import ru.healthanmary.trainingplugin.ArmorStdMesssage.PlayerSendMessageHooker;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveBook;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveEnchantedChestplate;
@@ -20,20 +20,22 @@ import java.util.HashMap;
 public final class TrainingPlugin extends JavaPlugin {
     private static TrainingPlugin instance;
     public static HumpHitEnchant humpHitEnchant;
+    public static DrillEnchant drillEnchant;
     @Override
     public void onEnable() {
         instance = this;
         humpHitEnchant = new HumpHitEnchant("humphit");
+        drillEnchant = new DrillEnchant("drill");
         registerEnchantment(humpHitEnchant);
-        getCommand("effectmenu").setExecutor(new EffectMenuCommandExecutor());
+        registerEnchantment(drillEnchant);
         getCommand("standspawn").setExecutor(new SpawnCommnd());
+        getCommand("gp").setExecutor(new GiveDrillEnchantedPickaxe());
         getCommand("getchestplate").setExecutor(new GiveBook());
         getCommand("getbook").setExecutor(new GiveEnchantedChestplate());
         getServer().getPluginManager().registerEvents(new PhantomDamageListener(), this);
-        getServer().getPluginManager().registerEvents(new ForbidGetItem(), this);
-        getServer().getPluginManager().registerEvents(new ApplyEffectOnClick(), this);
         getServer().getPluginManager().registerEvents(new GapleCooldown(), this);
         getServer().getPluginManager().registerEvents(new PlayerSendMessageHooker(), this);
+        getServer().getPluginManager().registerEvents(new DrillBlockBreakListener(), this);
 
     }
     public static void registerEnchantment(Enchantment enchantment) {
@@ -74,6 +76,26 @@ public final class TrainingPlugin extends JavaPlugin {
 
             if(byName.containsKey(humpHitEnchant.getName())) {
                 byName.remove(humpHitEnchant.getName());
+            }
+        } catch (Exception ignored) { }
+        try {
+            Field keyField = Enchantment.class.getDeclaredField("byKey");
+
+            keyField.setAccessible(true);
+            @SuppressWarnings("unchecked")
+            HashMap<NamespacedKey, Enchantment> byKey = (HashMap<NamespacedKey, Enchantment>) keyField.get(null);
+
+            if(byKey.containsKey(drillEnchant.getKey())) {
+                byKey.remove(drillEnchant.getKey());
+            }
+            Field nameField = Enchantment.class.getDeclaredField("byName");
+
+            nameField.setAccessible(true);
+            @SuppressWarnings("unchecked")
+            HashMap<String, Enchantment> byName = (HashMap<String, Enchantment>) nameField.get(null);
+
+            if(byName.containsKey(drillEnchant.getName())) {
+                byName.remove(drillEnchant.getName());
             }
         } catch (Exception ignored) { }
     }
