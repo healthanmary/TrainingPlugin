@@ -5,6 +5,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.healthanmary.trainingplugin.DrillEnchant.DrillBlockBreakListener;
 import ru.healthanmary.trainingplugin.DrillEnchant.DrillEnchant;
+import ru.healthanmary.trainingplugin.DrillEnchant.GiveDrillEnchantedBook;
 import ru.healthanmary.trainingplugin.DrillEnchant.GiveDrillEnchantedPickaxe;
 import ru.healthanmary.trainingplugin.ArmorStdMesssage.PlayerSendMessageHooker;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveBook;
@@ -28,6 +29,7 @@ public final class TrainingPlugin extends JavaPlugin {
         drillEnchant = new DrillEnchant("drill");
         registerEnchantment(humpHitEnchant);
         registerEnchantment(drillEnchant);
+        getCommand("getdrillenchant").setExecutor(new GiveDrillEnchantedBook(new DrillEnchant("drill")));
         getCommand("standspawn").setExecutor(new SpawnCommnd());
         getCommand("gp").setExecutor(new GiveDrillEnchantedPickaxe());
         getCommand("getchestplate").setExecutor(new GiveBook());

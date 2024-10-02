@@ -13,3 +13,5 @@ commands:
   getbook:
     aliases: gbk
   gp:
+  getdrillenchant:
+    aliases: gde

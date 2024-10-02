@@ -24,7 +24,7 @@ public class GiveDrillEnchantedPickaxe implements CommandExecutor {
         ItemStack pickaxe = new ItemStack(Material.NETHERITE_PICKAXE, 1);
         ItemMeta meta = pickaxe.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.GRAY + "Бур");
+        lore.add(ChatColor.GRAY + "Бур I (META)");
         meta.setLore(lore);
         pickaxe.setItemMeta(meta);
         pickaxe.addUnsafeEnchantment(TrainingPlugin.drillEnchant, 1);
