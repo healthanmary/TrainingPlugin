@@ -28,7 +28,6 @@ public class GiveDrillEnchantedPickaxe implements CommandExecutor {
         meta.setLore(lore);
         pickaxe.setItemMeta(meta);
         pickaxe.addUnsafeEnchantment(TrainingPlugin.drillEnchant, 1);
-
         p.getInventory().addItem(pickaxe);
 
         return true;

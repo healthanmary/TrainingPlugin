@@ -7,9 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class GiveDrillEnchantedBook implements CommandExecutor {
     private final DrillEnchant drillEnchant;
@@ -17,7 +20,6 @@ public class GiveDrillEnchantedBook implements CommandExecutor {
     public GiveDrillEnchantedBook(DrillEnchant drillEnchant) {
         this.drillEnchant = drillEnchant;
     }
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {

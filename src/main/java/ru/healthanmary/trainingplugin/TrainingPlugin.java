@@ -1,12 +1,10 @@
 package ru.healthanmary.trainingplugin;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.healthanmary.trainingplugin.DrillEnchant.DrillBlockBreakListener;
-import ru.healthanmary.trainingplugin.DrillEnchant.DrillEnchant;
-import ru.healthanmary.trainingplugin.DrillEnchant.GiveDrillEnchantedBook;
-import ru.healthanmary.trainingplugin.DrillEnchant.GiveDrillEnchantedPickaxe;
+import ru.healthanmary.trainingplugin.DrillEnchant.*;
 import ru.healthanmary.trainingplugin.ArmorStdMesssage.PlayerSendMessageHooker;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveBook;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.GiveEnchantedChestplate;
@@ -14,6 +12,7 @@ import ru.healthanmary.trainingplugin.KillPhantomEnchant.HumpHitEnchant;
 import ru.healthanmary.trainingplugin.KillPhantomEnchant.PhantomDamageListener;
 import ru.healthanmary.trainingplugin.Other.GapleCooldown;
 import ru.healthanmary.trainingplugin.ShulkerAnimation.SpawnCommnd;
+import ru.healthanmary.trainingplugin.commands.NearHelp;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -22,6 +21,7 @@ public final class TrainingPlugin extends JavaPlugin {
     private static TrainingPlugin instance;
     public static HumpHitEnchant humpHitEnchant;
     public static DrillEnchant drillEnchant;
+    public final DrillRightClickListener drillRightClickListener = new DrillRightClickListener();
     @Override
     public void onEnable() {
         instance = this;
@@ -29,15 +29,18 @@ public final class TrainingPlugin extends JavaPlugin {
         drillEnchant = new DrillEnchant("drill");
         registerEnchantment(humpHitEnchant);
         registerEnchantment(drillEnchant);
+        getCommand("nearbyplayers").setExecutor(new NearHelp());
         getCommand("getdrillenchant").setExecutor(new GiveDrillEnchantedBook(new DrillEnchant("drill")));
         getCommand("standspawn").setExecutor(new SpawnCommnd());
         getCommand("gp").setExecutor(new GiveDrillEnchantedPickaxe());
         getCommand("getchestplate").setExecutor(new GiveBook());
         getCommand("getbook").setExecutor(new GiveEnchantedChestplate());
+        getServer().getPluginManager().registerEvents(new DrillRightClickListener(), this);
         getServer().getPluginManager().registerEvents(new PhantomDamageListener(), this);
         getServer().getPluginManager().registerEvents(new GapleCooldown(), this);
         getServer().getPluginManager().registerEvents(new PlayerSendMessageHooker(), this);
-        getServer().getPluginManager().registerEvents(new DrillBlockBreakListener(), this);
+        getServer().getPluginManager().registerEvents(new DrillBlockBreakListener(drillRightClickListener), this);
+        getServer().getPluginManager().registerEvents(new DrillRightClickListener(), this);
 
     }
     public static void registerEnchantment(Enchantment enchantment) {

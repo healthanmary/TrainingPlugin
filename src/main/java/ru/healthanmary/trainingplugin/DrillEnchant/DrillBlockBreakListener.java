@@ -14,16 +14,25 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import ru.healthanmary.trainingplugin.TrainingPlugin;
 
+import java.util.HashMap;
 import java.util.Set;
 
 public class DrillBlockBreakListener implements Listener {
+    private DrillRightClickListener drillRightClickListener;
+    public DrillBlockBreakListener(DrillRightClickListener drillRightClickListener) {
+        this.drillRightClickListener = drillRightClickListener;
+    }
+    private HashMap<Player, Boolean> isActiveMap = drillRightClickListener.getIsDrillActive();
+
     @EventHandler
     public void on(BlockBreakEvent e) {
         if (!(e.getPlayer().getInventory().getItemInMainHand().getType().name().endsWith("_PICKAXE"))) return;
         ItemStack itemInHand = e.getPlayer().getInventory().getItemInMainHand();
         Enchantment custoumEnchantment = TrainingPlugin.drillEnchant;
         if (!itemInHand.getEnchantments().containsKey(Enchantment.getByKey(custoumEnchantment.getKey()))) return;
-        breakBlocks(e);
+        Boolean isActive = isActiveMap.get(e.getPlayer());
+        if (isActive)
+            breakBlocks(e);
     }
 
     private void breakBlocks(BlockBreakEvent e) {
